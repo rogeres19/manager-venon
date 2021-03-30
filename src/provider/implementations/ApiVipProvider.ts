@@ -1,14 +1,16 @@
 import axios, { AxiosInstance } from 'axios';
 import { IApiVipProvider } from '../IApiVipProvider';
+import { config } from '@src/config/provider'
 
 
 class ApiVipProvider implements IApiVipProvider {
 
-    private baseUrl = "https://plataforma.vip/api/";
+    private baseUrl = config.baseUrl;
     private axiosInstance: AxiosInstance;
     private token = '';
 
     constructor() {
+        console.log('api', this.baseUrl)
         this.token = 'Bearer ' + process.env.TOKEN;
         this.createAxiosInstance();
     }
@@ -27,7 +29,7 @@ class ApiVipProvider implements IApiVipProvider {
             const response = await this.axiosInstance.get(query);
             return response.data;
         } catch (error) {
-            return error.data;
+            return this.token;
         }
     }
 
