@@ -1,4 +1,4 @@
 
 export interface IApiVipProvider {
-    getUsersByPage(page: number): Promise<void>;
+    getUsersByPage(page: number): Promise<any>;
 }
